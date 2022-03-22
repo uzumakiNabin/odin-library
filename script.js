@@ -1,3 +1,4 @@
+const addBookFormToggleBtn = document.getElementById('addBookFormToggleBtn');
 const bookTitle = document.getElementById('title');
 const bookAuthor = document.getElementById('author');
 const bookPages = document.getElementById('pages');
@@ -15,7 +16,7 @@ function book(title, author, pages, hasRead){
 };
 
 function addBookToLibrary(e){
-    e.preventDefault();
+    //e.preventDefault();
     let hasReadInput;
     hasReadBook.forEach(radioButton => {
         if(radioButton.checked){
@@ -31,6 +32,7 @@ function addBookToLibrary(e){
         )
     );
     showBooksFromLibrary();
+    document.getElementById('formContainer').style.display = 'none';
 }
 
 function showBooksFromLibrary(){
@@ -66,6 +68,10 @@ function showBooksFromLibrary(){
         showField.append(card);
     })
 }
+
+addBookFormToggleBtn.addEventListener('click', () => {
+    document.getElementById('formContainer').style.display = 'block';
+});
 
 addBookBtn.addEventListener('click', addBookToLibrary);
 

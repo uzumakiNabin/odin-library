@@ -3,12 +3,19 @@
 }
 
 body{
-    background-color: #eee;
+    background-color: #d9ed92;
+}
+
+.container{
+    width: 80%;
+    margin: 0px auto;
 }
 
 h1{
     width: max-content;
+    font-weight: 900;
     margin: 0px auto;
+    color: #184e77
 }
 
 #show{
@@ -20,14 +27,143 @@ h1{
 }
 
 .card{
-    background-color: #fff;
-    box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+    background-color: #99d98c;
+    box-shadow: 2px 2px 5px 3px #184e77;
     border: 0px;
     border-radius: 10px;
-    padding: 0px 0px 20px 20px;
+    padding: 0px 20px 20px 20px;
 }
 
-#formContainer{
+.card-title{
+    color: #184e77;
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.card-author{
+    color: #1e6091;
+    font-size: 1.1rem;
+}
+
+.card-pages{
+    color: #1a759f;
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+.btn{
+    display: block;
+    margin: 8px 0px;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: 0px;
+    border-radius: 5px;
+    font-weight: 700;
+    color: #b5e48c;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 3px #184e77;
+}
+
+.btn:active{
+    animation-name: btnShrink;
+}
+
+.readBtn{
+    background-color: yellow;
+}
+
+.readBtn.bookCompleted{
+    box-shadow: none;
+}
+
+.editBtn{
+    background-color: green;
+}
+
+.deleteBtn{
+    background-color: #a00;
+}
+
+#addBookFormToggleBtn{
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 10px 25px;
+    margin: 35px 15px;
+    color: #1e6091;
+    background-color: #b5e48c;
+    border: 0px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px 3px #184e77;
+    cursor: pointer;
+}
+
+.formContainer{
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hidden{
     display: none;
 }
 
+.formContainer form{
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 300px;
+    background-color: #76c893;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px 3px #184e77;
+}
+
+#close-mark{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #184e77;
+    cursor: pointer;
+}
+
+.formContainer label, .formContainer p{
+    font-size: 1.2rem;
+    font-weight: 200;
+    margin: 10px 4px;
+    color: #184e77;
+}
+
+.formContainer input[type="text"]{
+    display: block;
+    width: 90%;
+    font-size: 1rem;
+    padding: 5px 10px;
+    border: 0px;
+    border-radius: 5px;
+    background-color: #d9ed92;
+    color: #184e77;
+    margin: 10px 0px;
+}
+
+.formContainer button{
+    display: block;
+    font-size: 1.1em;
+    padding: 5px 25px;
+    width: 100%;
+    border: 0px;
+    border-radius: 6px;
+    background-color: #184e77;
+    color: #d9ed92;
+    font-weight: 500;
+    margin-top: 35px;
+    box-shadow: 1px 1px 2px 2px #184e77;
+    cursor: pointer;
+}

@@ -10,6 +10,7 @@ const addBookBtn = document.getElementById('addBookBtn');
 const showField = document.getElementById('show');
 
 let myLibrary = [];
+let updateIndex = -1;
 
 function book(title, author, pages, hasRead){
     this.title = title,
@@ -20,20 +21,29 @@ function book(title, author, pages, hasRead){
 
 function addBookToLibrary(e){
     e.preventDefault();
-    let hasReadInput;
-    hasReadBook.forEach(radioButton => {
-        if(radioButton.checked){
-            hasReadInput = radioButton.value;
-        };
-    });
-    myLibrary.push(
-        new book(
-            bookTitle.value,
-            bookAuthor.value,
-            bookPages.value,
-            hasReadInput
-        )
+    const bookObject = new book(
+        bookTitle.value,
+        bookAuthor.value,
+        bookPages.value,
+        hasReadBook[0].checked ? hasReadBook[0].value : hasReadBook[1].value
     );
+    if(addBookBtn.textContent === 'Update'){
+        updateBookInLibrary(bookObject);
+        return;
+    }
+    if(myLibrary.some((bk) =>  bk.title === bookTitle.value)) {
+        alert(`${bookTitle.value} already exists.`);
+        return false;
+    } else {
+        myLibrary.push(bookObject);
+    }
+    clearFields();
+    showBooksFromLibrary();
+    form.classList.add('hidden');
+}
+
+function updateBookInLibrary(bookToUpdate) {
+    myLibrary[updateIndex] = bookToUpdate;
     showBooksFromLibrary();
     form.classList.add('hidden');
 }
@@ -79,7 +89,12 @@ function showBooksFromLibrary(){
         editBtn.value = 'Edit';
         editBtn.classList.add('btn', 'editBtn');
         editBtn.addEventListener('click', () => {
-            document.getElementById('formContainer').style.display = 'block';
+            addBookBtn.textContent = 'Update';
+            bookTitle.value = book.title;
+            bookAuthor.value = book.author;
+            bookPages.value = book.pages;
+            updateIndex = index;
+            form.classList.remove('hidden');
         });
 
         let deleteBtn = document.createElement('input');
@@ -99,9 +114,17 @@ function showBooksFromLibrary(){
         card.appendChild(deleteBtn);
         showField.append(card);
     })
+};
+
+const clearFields = () => {
+    bookTitle.value = '';
+    bookAuthor.value = '';
+    bookPages.value = '';
+    hasReadBook[0].checked = true;
 }
 
 addBookFormToggleBtn.addEventListener('click', () => {
+    addBookBtn.textContent = 'Add';
     form.classList.remove('hidden');
 });
 
@@ -109,6 +132,7 @@ addBookForm.addEventListener('submit', addBookToLibrary);
 
 closeForm.addEventListener('click', () => {
     form.classList.add('hidden');
+    clearFields();
 })
 
 showBooksFromLibrary();
